@@ -12,6 +12,7 @@
     <groupId>com.learn.grpc</groupId>
     <artifactId>unary</artifactId>
 
-    
+    <dependencies>
+    </dependencies>
 
 </project>
