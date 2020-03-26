@@ -36,6 +36,7 @@
     <modules>
         <module>first</module>
         <module>unary</module>
+        <module>calculator</module>
     </modules>
 
     <build>
