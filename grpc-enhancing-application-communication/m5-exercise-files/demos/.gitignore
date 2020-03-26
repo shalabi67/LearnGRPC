@@ -1,0 +1,9 @@
+bin
+pkg
+obj
+lib
+node_modules
+.vs
+/VacationTrackerBatch/target/
+*.exe
+npm-debug.log

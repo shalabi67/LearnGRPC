@@ -1,0 +1,42 @@
+{% extends "_layout.nunjucks" %}
+
+{% block content %}
+	<div class="row request-vacation">
+		<form action="./new" 
+			method="post"
+			class="columns small-12">
+			<div class="row">
+				<h1 class="columns small-12 text-center">Vacation Request Form</h1>
+			</div>
+			<div class="row">
+				<h2 class="columns small-9 small-offset-3">{{employee.lastName}}, {{employee.firstName}} [{{employee.badgeNumber}}]</h2>
+			</div>
+			<div class="row">
+				<div class="columns small-6 small-offset-3 end">
+					<div class="row">
+						<div class="columns small-12">
+							<label for="startDate">Start Date
+								<input type="date" id="startDate" name="startDate">
+							</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="columns small-12">
+							<label for="duration">
+								Duration
+								<input type="number" id="duration" name="duration" min="0" step="1" >
+							</label>
+						</div>
+						<div class="row">
+							<div class="columns small-2 small-offset-9 end">
+								<button type="submit">Submit</button>
+							</div>
+							
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+{% endblock %}

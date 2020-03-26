@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["BaseCssClass"] = "add-employee";
+    ViewData["Title"] = "Add Employees";
+}
+
+@model VacationTrackerAdmin.Models.Employee
+
+<h1 class="text-center">Add Employees</h1>
+
+@using (Html.BeginForm())
+{
+    <div class="row title">
+        <div class="columns small-2">
+            @Html.LabelFor(m => m.Id)
+        </div>
+        <div class="columns small-2">
+            @Html.LabelFor(m => m.BadgeNumber)
+        </div>
+        <div class="columns small-2">
+            @Html.LabelFor(m => m.FirstName)
+        </div>
+        <div class="columns small-2">
+            @Html.LabelFor(m => m.LastName)
+        </div>
+        <div class="columns small-2">
+            @Html.LabelFor(m => m.VacationAccrualRate)
+        </div>
+        <div class="columns small-2">
+            @Html.LabelFor(m => m.VacationAccrued)
+        </div>
+    </div>
+
+    @for (var i = 0; i < 5; i++)
+    {
+        <div class="row">
+            <div class="columns small-2">
+                new
+            </div>
+            <div class="columns small-2">
+                <input type="number" name="[@i].BadgeNumber" value="" min="0" />
+            </div>
+            <div class="columns small-2">
+                <input type="text" name="[@i].FirstName" value="" />
+            </div>
+            <div class="columns small-2">
+                <input type="text" name="[@i].LastName" value="" />
+            </div>
+            <div class="columns small-2">
+                <input type="number" name="[@i].VacationAccrualRate" value="" min="0" step="0.01"/>
+            </div>
+            <div class="columns small-2">
+                <input type="number" name="[@i].VacationAccrued" value="" min="0" step="0.01"/>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="columns small-2 small-offset-10">
+            <button type="submit">Submit</button>
+        </div>
+    </div>
+}
+
+

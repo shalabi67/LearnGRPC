@@ -1,0 +1,52 @@
+@import "_variables.scss";
+.home {
+    .title {
+        color: #333;
+    }
+
+    .nav-menu {
+        .menu-item {
+            $radius: 5rem;
+            $color: #fdfdfd;
+                         
+            font-size: 4rem;
+            margin-bottom: $radius + 1rem;
+            background-color: $color-complement-0;
+            padding: 1rem 0;
+            text-align: center;
+            position: relative;
+            z-index: 0;
+            cursor: pointer;
+            color: $color;
+
+            &:before {
+                position:absolute;
+                left: -$radius;
+                height: $radius * 2;
+                background-color: $color-complement-0;
+                content: " ";
+                width: $radius * 2;
+                border-radius: $radius;
+                top: 0;
+                z-index: -1;
+                font-family: 'FontAwesome';
+                color: $color;
+                padding-top: 2rem;
+                font-size: 6rem;
+            }
+
+            &.request:before {
+                content: "\f067";
+            }
+
+            &.view:before {
+                content: "\f0f6";
+            }
+            
+            &:hover, &:hover:before {
+                background-color: $color-complement-1;
+
+            }
+        }
+    }
+}

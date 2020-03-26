@@ -1,0 +1,24 @@
+{% extends "_layout.nunjucks" %}
+
+{% block content %}
+	<div class="login">
+		<h1 class="text-center">Please Enter a Badge Number</h1>
+
+		<form action="/" method="get">
+			<div class="row">
+				<div class="columns small-4 small-offset-4 end">
+					Employee Badge Number
+				</div>
+				<div class="columns small-4 small-offset-4 end">
+					<input type="number" name="badgeNumber" value="" />
+				</div>
+			</div>
+			<div class="row">
+				<div class="columns small-2 small-offset-7 end">
+					<button type="submit">Submit</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+{% endblock %}

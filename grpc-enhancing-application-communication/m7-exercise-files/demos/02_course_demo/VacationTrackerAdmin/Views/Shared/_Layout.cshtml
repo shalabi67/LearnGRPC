@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vacation Tracking Tool - s@ViewData["Title"]</title>
+
+    <link href="~/node_modules/zurb-foundation/css/normalize.css" rel="stylesheet" />
+    <link href="~/node_modules/zurb-foundation/css/foundation.css" rel="stylesheet" />
+    <link href="~/css/font-awesome.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="row @ViewData["BaseCssClass"]">
+            <div class="columns small-12">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

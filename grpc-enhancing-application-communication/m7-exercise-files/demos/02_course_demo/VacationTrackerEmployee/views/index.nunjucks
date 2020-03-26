@@ -1,0 +1,27 @@
+{% extends "_layout.nunjucks" %}
+
+{% block content %}
+<div class="home">
+		<div class="row">
+			<div class="columns small-10 small-offset-1 end">
+				<h1 class="text-center title">Vacation Tracker</h1>
+			</div>
+		</div>
+		<div class="row">
+			<div class="columns small-12 nav-menu">
+				<div class="row">
+					<a  class="columns small-8 small-offset-2 end menu-item request" 
+						href="/employees/{{badgeNumber}}/vacations/new">
+						Request Vacation
+					</a>
+				</div>
+				<div class="row">
+					<a class="columns small-8 small-offset-2 end menu-item view"
+						href="/employees/{{badgeNumber}}/vacations">
+						View Vacations
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

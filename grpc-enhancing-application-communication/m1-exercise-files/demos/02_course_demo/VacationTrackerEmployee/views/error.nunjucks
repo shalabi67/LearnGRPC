@@ -1,0 +1,7 @@
+{% extends "_layout.nunjucks" %}
+
+{% block content %}
+Message: {{message}}
+<br>
+Error: {{error}}
+{% endblock %}

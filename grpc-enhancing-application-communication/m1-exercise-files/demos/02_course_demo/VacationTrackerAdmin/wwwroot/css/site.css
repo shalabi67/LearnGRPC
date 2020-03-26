@@ -1,0 +1,49 @@
+﻿html, body {
+  font-size: 100%; }
+
+.home .title {
+  color: #333; }
+
+.home .nav-menu .menu-item {
+  font-size: 4rem;
+  margin-bottom: 6rem;
+  background-color: #00CCCC;
+  padding: 1rem 0;
+  text-align: center;
+  position: relative;
+  z-index: 0;
+  cursor: pointer;
+  color: #fdfdfd; }
+  .home .nav-menu .menu-item:before {
+    position: absolute;
+    left: -5rem;
+    height: 10rem;
+    background-color: #00CCCC;
+    content: " ";
+    width: 10rem;
+    border-radius: 5rem;
+    top: 0;
+    z-index: -1;
+    font-family: 'FontAwesome';
+    color: #fdfdfd;
+    padding-top: 2rem;
+    font-size: 6rem; }
+  .home .nav-menu .menu-item.add:before {
+    content: "\f067"; }
+  .home .nav-menu .menu-item.update:before {
+    content: "\f040"; }
+  .home .nav-menu .menu-item.report:before {
+    content: "\f0f6"; }
+  .home .nav-menu .menu-item:hover, .home .nav-menu .menu-item:hover:before {
+    background-color: #3AD2D2; }
+
+.add-employee .title {
+  font-size: 1.3rem;
+  margin-bottom: 0.2rem; }
+
+.add-employee form .columns {
+  text-align: center; }
+
+.report .vacation-item {
+  line-height: 1.4rem; }
+

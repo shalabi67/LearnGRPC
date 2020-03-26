@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["BaseCssClass"] = "home";
+    ViewData["Title"] = "Home";
+
+}
+<div class="row">
+    <div class="columns small-10 small-offset-1 end">
+        <h1 class="text-center title">Vacation Tracking Adminstrations</h1>
+    </div>
+</div>
+<div class="row">
+    <div class="columns small-12 nav-menu">
+        <div class="row">
+            <a asp-controller="Employee" asp-action="GetAdd" 
+               class="columns small-8 small-offset-2 end menu-item add" >
+                Add Employees
+            </a>
+        </div>
+        <div class="row">
+            <a asp-controller="Employee" asp-action="GetId" 
+               class="columns small-8 small-offset-2 end menu-item update">
+                Update Employee
+            </a>
+        </div>
+        <div class="row">
+            <a asp-controller="Report" asp-action="Index"
+               class="columns small-8 small-offset-2 end menu-item report">
+                Generate Report
+            </a>
+        </div>
+    </div>
+</div>
