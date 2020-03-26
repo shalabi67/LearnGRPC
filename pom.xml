@@ -37,6 +37,7 @@
         <module>first</module>
         <module>unary</module>
         <module>calculator</module>
+        <module>server-streaming</module>
     </modules>
 
     <build>
