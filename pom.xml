@@ -42,6 +42,7 @@
         <module>errors</module>
         <module>bidirectional-streaming</module>
         <module>deadlines</module>
+        <module>https</module>
     </modules>
 
     <build>
