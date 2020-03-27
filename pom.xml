@@ -40,6 +40,7 @@
         <module>server-streaming</module>
         <module>client-streaming</module>
         <module>errors</module>
+        <module>bidirectional-streaming</module>
     </modules>
 
     <build>

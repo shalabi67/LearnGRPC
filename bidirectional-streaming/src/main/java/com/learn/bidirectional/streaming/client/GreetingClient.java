@@ -1,4 +1,4 @@
-package com.learn.streaming.client;
+package com.learn.bidirectional.streaming.client;
 
 import com.learn.grpc.greeting.GreetingRequest;
 import com.learn.grpc.greeting.GreetingResponse;
@@ -18,7 +18,7 @@ public class GreetingClient {
         latch = new CountDownLatch(1);
 
         ManagedChannel channel = ManagedChannelBuilder
-                .forAddress("localhost", 5553)
+                .forAddress("localhost", 5556)
                 .usePlaintext()
                 .build();
 
@@ -38,14 +38,18 @@ public class GreetingClient {
                     .build();
 
             greetingRequestObserver.onNext(greetingRequest);
+            System.out.println("Person " + person.getFirstName());
         }
         greetingRequestObserver.onCompleted();
+
 
         try {
             latch.await(3L, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
+
 
         channel.shutdown();
     }
