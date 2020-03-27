@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.learn.grpc.calculator;
+
+option java_multiple_files = true;
+
+message CalculatorRequest {
+    int32 number = 1;
+}
+
+message CalculatorResponse {
+    double result = 1;
+}
+
+service CalculatorService {
+    // This will throw an exception if number is negative
+    rpc SquareRoot(CalculatorRequest) returns (CalculatorResponse) {};
+}

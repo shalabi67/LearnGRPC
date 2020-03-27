@@ -39,6 +39,7 @@
         <module>calculator</module>
         <module>server-streaming</module>
         <module>client-streaming</module>
+        <module>errors</module>
     </modules>
 
     <build>
