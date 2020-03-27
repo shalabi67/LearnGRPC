@@ -41,6 +41,7 @@
         <module>client-streaming</module>
         <module>errors</module>
         <module>bidirectional-streaming</module>
+        <module>deadlines</module>
     </modules>
 
     <build>

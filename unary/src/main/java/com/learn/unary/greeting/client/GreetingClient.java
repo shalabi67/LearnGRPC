@@ -27,5 +27,7 @@ public class GreetingClient {
                 .build();
         GreetingResponse greetingResponse = greetingService.greet(greetingRequest);
         System.out.println(greetingResponse.getGreeting());
+
+        channel.shutdown();
     }
 }
