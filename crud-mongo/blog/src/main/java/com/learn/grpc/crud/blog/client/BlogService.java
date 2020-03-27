@@ -46,11 +46,27 @@ public class BlogService {
 
             return blogResponse.getBlog();
         }catch(StatusRuntimeException e) {
-            if(e.getStatus().getCode() == Status.NOT_FOUND.getCode()) {
-                System.out.println("Blog not found for blog id " + blogId);
-            } else {
-                e.printStackTrace();
-            }
+            manageException(e, blogId);
+        }
+
+        return null;
+    }
+
+    Blog updateBlog(Blog blog) {
+        BlogRequest blogRequest = BlogRequest.newBuilder()
+                .setBlog(blog)
+                .build();
+
+        System.out.println("Updating blog");
+        BlogServiceGrpc.BlogServiceBlockingStub blogService = BlogServiceGrpc.newBlockingStub(channel);
+
+        try {
+            BlogResponse blogResponse = blogService.updateBlog(blogRequest);
+            printBlog(blogResponse.getBlog());
+
+            return blogResponse.getBlog();
+        }catch(StatusRuntimeException e) {
+            manageException(e, blog.getBlogId());
         }
 
         return null;
@@ -58,5 +74,15 @@ public class BlogService {
 
     private void printBlog(Blog blog) {
         System.out.println(blog.toString());
+    }
+
+    private void manageException(StatusRuntimeException e, String blogId) {
+        if(e.getStatus().getCode() == Status.NOT_FOUND.getCode()) {
+            System.out.println("Blog not found for blog id " + blogId);
+        } else if(e.getStatus().getCode() == Status.INVALID_ARGUMENT.getCode()) {
+            System.out.println("Blog id is invalid" + blogId);
+        } else {
+            e.printStackTrace();
+        }
     }
 }

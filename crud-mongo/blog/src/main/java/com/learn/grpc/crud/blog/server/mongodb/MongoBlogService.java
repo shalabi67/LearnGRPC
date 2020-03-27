@@ -50,4 +50,15 @@ public class MongoBlogService {
 
         return null;
     }
+
+    public Blog updateBlog(Blog blog) {
+        Document document = createDocument(blog);
+        //document.append(ID, blog.getBlogId());
+
+        Document updatedDocument = blogsTable.findOneAndReplace(Filters.eq(ID, new ObjectId(blog.getBlogId())), document);
+        if(updatedDocument == null) {
+            return null;
+        }
+        return createBlog(updatedDocument);
+    }
 }

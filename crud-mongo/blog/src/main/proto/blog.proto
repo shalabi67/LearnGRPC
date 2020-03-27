@@ -25,4 +25,5 @@ message BlogByIdRequest {
 service BlogService {
     rpc createBlog(BlogRequest) returns (BlogResponse) {};
     rpc getBlog(BlogByIdRequest) returns (BlogResponse) {};
+    rpc updateBlog(BlogRequest) returns (BlogResponse) {};
 }
