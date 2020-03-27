@@ -43,6 +43,7 @@
         <module>bidirectional-streaming</module>
         <module>deadlines</module>
         <module>https</module>
+        <module>crud-mongo/blog</module>
     </modules>
 
     <build>
