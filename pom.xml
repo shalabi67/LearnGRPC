@@ -38,6 +38,7 @@
         <module>unary</module>
         <module>calculator</module>
         <module>server-streaming</module>
+        <module>client-streaming</module>
     </modules>
 
     <build>

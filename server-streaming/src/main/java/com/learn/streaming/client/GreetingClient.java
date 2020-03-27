@@ -1,7 +1,6 @@
 package com.learn.streaming.client;
 
 import com.learn.grpc.greeting.GreetingRequest;
-import com.learn.grpc.greeting.GreetingResponse;
 import com.learn.grpc.greeting.GreetingServiceGrpc;
 import com.learn.grpc.greeting.Person;
 import io.grpc.ManagedChannel;
