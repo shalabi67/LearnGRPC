@@ -34,7 +34,7 @@ public class BlogService {
 
     public Blog getBlogById(String blogId) {
         BlogByIdRequest request = BlogByIdRequest.newBuilder()
-                .setBlogid(blogId)
+                .setBlogId(blogId)
                 .build();
 
         System.out.println("Getting blog for id " + blogId);
@@ -67,6 +67,27 @@ public class BlogService {
             return blogResponse.getBlog();
         }catch(StatusRuntimeException e) {
             manageException(e, blog.getBlogId());
+        }
+
+        return null;
+    }
+
+    public Blog deleteBlogById(String blogId) {
+        BlogByIdRequest request = BlogByIdRequest.newBuilder()
+                .setBlogId(blogId)
+                .build();
+
+        System.out.println("Deleting blog for id " + blogId);
+        BlogServiceGrpc.BlogServiceBlockingStub blogService = BlogServiceGrpc.newBlockingStub(channel);
+
+        try {
+            BlogResponse blogResponse = blogService.deleteBlogById(request);
+            System.out.println("deleted blog");
+            printBlog(blogResponse.getBlog());
+
+            return blogResponse.getBlog();
+        }catch(StatusRuntimeException e) {
+            manageException(e, blogId);
         }
 
         return null;

@@ -19,11 +19,12 @@ message BlogResponse {
 }
 
 message BlogByIdRequest {
-    string blogid = 1;
+    string blogId = 1;
 }
 
 service BlogService {
     rpc createBlog(BlogRequest) returns (BlogResponse) {};
     rpc getBlog(BlogByIdRequest) returns (BlogResponse) {};
     rpc updateBlog(BlogRequest) returns (BlogResponse) {};
+    rpc deleteBlogById(BlogByIdRequest) returns (BlogResponse) {};
 }

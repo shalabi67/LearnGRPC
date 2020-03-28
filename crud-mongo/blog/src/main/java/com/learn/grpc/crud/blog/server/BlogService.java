@@ -20,24 +20,14 @@ public class BlogService extends BlogServiceGrpc.BlogServiceImplBase {
 
     @Override
     public void getBlog(BlogByIdRequest request, StreamObserver<BlogResponse> responseObserver) {
-        if(!isValidId(request.getBlogid())) {
-            responseObserver.onError(Status
-                    .INVALID_ARGUMENT
-                    .withDescription("blog is is invalid")
-                    .augmentDescription("blog id = " + request.getBlogid())
-                    .asRuntimeException());
-
+        if(!isValidId(request.getBlogId())) {
+            sendInvalidBlogIdError(request.getBlogId(), responseObserver);
             return;
         }
 
-        Blog blog = mongoService.getBlogById(request.getBlogid());
+        Blog blog = mongoService.getBlogById(request.getBlogId());
         if(blog == null) {
-            responseObserver.onError(Status
-                    .NOT_FOUND
-                    .withDescription("Could not find blog")
-                    .augmentDescription("blog id = " + request.getBlogid())
-                    .asRuntimeException());
-
+            sendNotFoundBlogError(request.getBlogId(), responseObserver);
             return;
         }
 
@@ -49,27 +39,36 @@ public class BlogService extends BlogServiceGrpc.BlogServiceImplBase {
     public void updateBlog(BlogRequest request, StreamObserver<BlogResponse> responseObserver) {
         String blogId = request.getBlog().getBlogId();
         if(!isValidId(blogId)) {
-            responseObserver.onError(Status
-                    .INVALID_ARGUMENT
-                    .withDescription("blog is is invalid")
-                    .augmentDescription("blog id = " +blogId)
-                    .asRuntimeException());
-
+            sendInvalidBlogIdError(blogId, responseObserver);
             return;
         }
 
         Blog updatedBlog = mongoService.updateBlog(request.getBlog());
         if(updatedBlog == null) {
-            responseObserver.onError(Status
-                    .NOT_FOUND
-                    .withDescription("Could not find blog")
-                    .augmentDescription("blog id = " + blogId)
-                    .asRuntimeException());
-
+            sendNotFoundBlogError(blogId, responseObserver);
             return;
         }
 
         responseObserver.onNext(createBlogResponseObject(updatedBlog));
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void deleteBlogById(BlogByIdRequest request, StreamObserver<BlogResponse> responseObserver) {
+        String blogId = request.getBlogId();
+        if(!isValidId(blogId)) {
+            sendInvalidBlogIdError(blogId, responseObserver);
+            return;
+        }
+
+        Blog deletedBlog = mongoService.deleteBlogById(blogId);
+        if(deletedBlog == null) {
+            sendNotFoundBlogError(blogId, responseObserver);
+
+            return;
+        }
+
+        responseObserver.onNext(createBlogResponseObject(deletedBlog));
         responseObserver.onCompleted();
     }
 
@@ -86,5 +85,21 @@ public class BlogService extends BlogServiceGrpc.BlogServiceImplBase {
         } catch(Exception e) {
             return false;
         }
+    }
+
+    private void sendInvalidBlogIdError(String blogId, StreamObserver<BlogResponse> responseObserver) {
+        responseObserver.onError(Status
+                .INVALID_ARGUMENT
+                .withDescription("blog is is invalid")
+                .augmentDescription("blog id = " +blogId)
+                .asRuntimeException());
+    }
+
+    private void sendNotFoundBlogError(String blogId, StreamObserver<BlogResponse> responseObserver) {
+        responseObserver.onError(Status
+                .NOT_FOUND
+                .withDescription("Could not find blog")
+                .augmentDescription("blog id = " + blogId)
+                .asRuntimeException());
     }
 }

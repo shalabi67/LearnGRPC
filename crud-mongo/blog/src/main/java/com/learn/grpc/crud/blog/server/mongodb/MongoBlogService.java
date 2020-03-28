@@ -61,4 +61,13 @@ public class MongoBlogService {
         }
         return createBlog(updatedDocument);
     }
+
+    public Blog deleteBlogById(String blogId) {
+        Document blogDocument = blogsTable.findOneAndDelete(Filters.eq(ID, new ObjectId(blogId)));
+        if(blogDocument != null) {
+            return createBlog(blogDocument);
+        }
+
+        return null;
+    }
 }

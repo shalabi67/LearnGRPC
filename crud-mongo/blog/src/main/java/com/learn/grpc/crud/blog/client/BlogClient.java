@@ -38,6 +38,14 @@ public class BlogClient {
         updatBlog = newBlog.toBuilder().setBlogId("ffff3f57f401191e84e2cb7a").build();
         blogService.updateBlog(updatBlog);
 
+        // deleting blog
+        // deleting non exiting blog
+        blogService.deleteBlogById("ffff3f57f401191e84e2cb7a");
+        // deleting invalid blog
+        blogService.deleteBlogById("invalid id");
+        // deleting blog by id
+        blogService.deleteBlogById(newBlog.getBlogId());
+
         channel.shutdown();
     }
 
