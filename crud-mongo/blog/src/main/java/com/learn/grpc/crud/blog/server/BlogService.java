@@ -2,9 +2,14 @@ package com.learn.grpc.crud.blog.server;
 
 import com.learn.blog.*;
 import com.learn.grpc.crud.blog.server.mongodb.MongoBlogService;
+import com.mongodb.Block;
+import com.mongodb.client.FindIterable;
 import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
+import org.bson.Document;
 import org.bson.types.ObjectId;
+
+import java.util.function.Consumer;
 
 public class BlogService extends BlogServiceGrpc.BlogServiceImplBase {
     MongoBlogService mongoService = new MongoBlogService();
@@ -69,6 +74,17 @@ public class BlogService extends BlogServiceGrpc.BlogServiceImplBase {
         }
 
         responseObserver.onNext(createBlogResponseObject(deletedBlog));
+        responseObserver.onCompleted();
+    }
+
+    @Override
+    public void listBlogs(ListBlogRequest request, StreamObserver<BlogResponse> responseObserver) {
+        FindIterable<Document> iterable = mongoService.find();
+        iterable.forEach((Consumer<? super Document>) document -> {
+            Blog blog = mongoService.createBlog(document);
+            responseObserver.onNext(createBlogResponseObject(blog));
+        });
+
         responseObserver.onCompleted();
     }
 

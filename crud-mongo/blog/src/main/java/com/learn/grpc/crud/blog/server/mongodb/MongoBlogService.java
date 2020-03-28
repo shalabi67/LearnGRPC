@@ -2,13 +2,12 @@ package com.learn.grpc.crud.blog.server.mongodb;
 
 import com.learn.blog.Blog;
 import com.learn.grpc.crud.blog.Connection;
-import com.mongodb.client.MongoClient;
-import com.mongodb.client.MongoClients;
-import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.*;
 import com.mongodb.client.model.Filters;
 import org.bson.Document;
 import org.bson.types.ObjectId;
+
+import java.util.List;
 
 public class MongoBlogService {
     private static final String ID = "_id";
@@ -25,7 +24,7 @@ public class MongoBlogService {
         return document;
     }
 
-    private Blog createBlog(Document document) {
+    public Blog createBlog(Document document) {
         Blog blog = Blog.newBuilder()
                 .setBlogId(document.getObjectId(ID).toString())
                 .setTitle(document.getString(TITLE))
@@ -69,5 +68,9 @@ public class MongoBlogService {
         }
 
         return null;
+    }
+
+    public FindIterable<Document> find() {
+        return blogsTable.find();
     }
 }

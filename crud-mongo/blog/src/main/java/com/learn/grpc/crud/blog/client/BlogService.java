@@ -93,6 +93,20 @@ public class BlogService {
         return null;
     }
 
+    public void listBlog() {
+        ListBlogRequest request = ListBlogRequest.newBuilder().build();
+
+        System.out.println("Listing Blog");
+
+        BlogServiceGrpc.BlogServiceBlockingStub blogService = BlogServiceGrpc.newBlockingStub(channel);
+
+        blogService.listBlogs(request)
+                .forEachRemaining(blogResponse -> {
+                    printBlog(blogResponse.getBlog());
+                });
+
+    }
+
     private void printBlog(Blog blog) {
         System.out.println(blog.toString());
     }

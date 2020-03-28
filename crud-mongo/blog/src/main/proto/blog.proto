@@ -22,9 +22,14 @@ message BlogByIdRequest {
     string blogId = 1;
 }
 
+message ListBlogRequest {
+
+}
+
 service BlogService {
     rpc createBlog(BlogRequest) returns (BlogResponse) {};
     rpc getBlog(BlogByIdRequest) returns (BlogResponse) {};
     rpc updateBlog(BlogRequest) returns (BlogResponse) {};
     rpc deleteBlogById(BlogByIdRequest) returns (BlogResponse) {};
+    rpc listBlogs(ListBlogRequest) returns (stream BlogResponse) {};
 }

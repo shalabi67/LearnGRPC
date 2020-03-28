@@ -46,6 +46,10 @@ public class BlogClient {
         // deleting blog by id
         blogService.deleteBlogById(newBlog.getBlogId());
 
+
+        //list blog
+        blogService.listBlog();
+
         channel.shutdown();
     }
 
